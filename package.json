@@ -4,7 +4,7 @@
   "description": "lume backend",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon index.js"
+    "start": "nodemon index.js"
   },
   "author": "Suleiman Msumari",
   "license": "ISC",
