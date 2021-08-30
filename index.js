@@ -3,9 +3,10 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const authRoute = require("./routes/auth")
-
+const authRoute = require("./routes/auth");
+const movieRoute = require("./routes/movie");
 const userRoute = require("./routes/user");
+const getMoviesRoute = require("./routes/movie");
 dotenv.config();
 
 mongoose
@@ -22,7 +23,9 @@ mongoose
 
   app.use("/api/auth",authRoute);
 
-app.use("/api/users", userRoute);
+  app.use("/api/users", userRoute);
+  app.use("/api/movie", movieRoute);
+  app.use("/api/movies", getMoviesRoute);
 
 
 app.listen(8800, () => {
