@@ -13,7 +13,7 @@ router.put("/:id", verify, async (req, res) => {
       ).toString();
     }
     try {
-      const updateUser = await User.findById(
+      const updateUser = await User.findByIdAndUpdate(
         req.params.id,
         {
           $set: req.body,
@@ -22,7 +22,7 @@ router.put("/:id", verify, async (req, res) => {
       );
       res.status(200).json(updateUser);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json("user failed to update");
     }
   } else {
     res.status(403).json("You can update only your account");
