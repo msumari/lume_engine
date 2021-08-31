@@ -7,6 +7,7 @@ const authRoute = require("./routes/auth");
 const movieRoute = require("./routes/movie");
 const userRoute = require("./routes/user");
 const getMoviesRoute = require("./routes/movie");
+const moviesListRoute = require("./routes/list");
 dotenv.config();
 
 mongoose
@@ -26,6 +27,7 @@ mongoose
   app.use("/api/users", userRoute);
   app.use("/api/movie", movieRoute);
   app.use("/api/movies", getMoviesRoute);
+  app.use("/api/lists", moviesListRoute);
 
 
 app.listen(8800, () => {
