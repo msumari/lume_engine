@@ -3,7 +3,7 @@ const List = require("../models/List");
 const verify = require("../tokenVerify");
 
 //CREATE
-router.post("/", verify, async (req, res) => {
+router.post("/create", verify, async (req, res) => {
   if (req.user.isAdmin) {
       const newList = new List(req.body);
 
@@ -11,7 +11,7 @@ router.post("/", verify, async (req, res) => {
           const saveList = await newList.save();
           res.status(201).json(saveList);
       }catch(err){
-            res.status(500).json(err);
+            res.status(500).json("Movie not created");
       }
 
   }else{
@@ -64,7 +64,7 @@ router.delete("/:id", verify, async (req, res) => {
           }else{
               list = await List.aggregate([{ $sample: {size: 10}}]);
           }
-          res.status(500).json(list);
+          res.status(200).json(list);
 
       }catch(err){
           res.status(500).json(err);
