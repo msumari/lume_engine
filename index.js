@@ -9,6 +9,7 @@ const movieRoute = require("./routes/movie");
 
 const userRoute = require("./routes/user");
 const getMoviesRoute = require("./routes/movie");
+const moviesListRoute = require("./routes/list");
 dotenv.config();
 
 mongoose
@@ -20,6 +21,15 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.json());
+
+  app.use(express.json());
+
+  app.use("/api/auth",authRoute);
+
+  app.use("/api/users", userRoute);
+  app.use("/api/movie", movieRoute);
+  app.use("/api/movies", getMoviesRoute);
+  app.use("/api/lists", moviesListRoute);
 
 app.use("/api/auth", authRoute);
 
