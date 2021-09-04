@@ -22,20 +22,16 @@ mongoose
 
 app.use(express.json());
 
-  app.use(express.json());
-
-  app.use("/api/auth",authRoute);
-
-  app.use("/api/users", userRoute);
-  app.use("/api/movie", movieRoute);
-  app.use("/api/movies", getMoviesRoute);
-  app.use("/api/lists", moviesListRoute);
+app.use(express.json());
 
 app.use("/api/auth", authRoute);
 
 app.use("/api/users", userRoute);
 app.use("/api/movie", movieRoute);
 app.use("/api/movies", getMoviesRoute);
+app.use("/api/lists", moviesListRoute);
+
+app.use("/api/auth", authRoute);
 
 app.listen(8800, () => {
   console.log("backend is up");
