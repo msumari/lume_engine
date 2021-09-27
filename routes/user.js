@@ -54,7 +54,7 @@ router.get("/find/:id", async (req, res) => {
     const { password, ...info } = user._doc;
     res.status(200).json(info);
   } catch (err) {
-    res.status(500).json("user failed to delete");
+    res.status(500).json("user failed to retrieve");
   }
 });
 //GET ALL
