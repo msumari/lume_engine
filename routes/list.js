@@ -44,12 +44,11 @@ router.get("/", async (req, res) => {
     if (typeQuery) {
       if (genreQuery) {
         list = await List.aggregate([
-          { $sample: { $size: 10 } },
-          { $match: { type: typeQuery, genre: genreQuery } },
+          { $match: { $and: [{ type: typeQuery }, { genre: genreQuery }] } },
         ]);
       } else {
         list = await List.aggregate([
-          { $sapme: { size: 10 } },
+          { $sample: { size: 10 } },
           { $match: { type: typeQuery } },
         ]);
       }
