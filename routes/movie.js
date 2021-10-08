@@ -94,4 +94,14 @@ router.get("/", verify, async (req, res) => {
     res.status(403).json("You are not allowed");
   }
 });
+
+router.get("/search", async (req, res) => {
+  try {
+    const movies = await Movie.find({}, { title: 1 });
+    res.status(200).json(movies);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
