@@ -1,4 +1,5 @@
 const express = require("express");
+const compression = require("compression");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -19,6 +20,8 @@ mongoose
   })
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
+
+app.use(compression());
 
 app.use(express.json());
 
