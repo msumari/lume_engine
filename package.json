@@ -9,6 +9,7 @@
   "author": "Suleiman Msumari",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "compression": "^1.7.4",
     "crypto-js": "^4.1.1",
     "dotenv": "^10.0.0",
