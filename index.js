@@ -5,19 +5,6 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
-const whitelist = ["http://lume.msumari.com"];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
-app.use(cors(corsOptions));
-
 const authRoute = require("./routes/auth");
 
 const movieRoute = require("./routes/movie");
@@ -36,6 +23,7 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
 
+app.use(cors({ origin: "http://lume.msumari.com", credentials: true }));
 app.use(compression());
 
 app.use(express.json());
