@@ -23,7 +23,7 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
 
-app.use(cors({ origin: "http://lume.msumari.com", credentials: true }));
+app.use(cors({ origin: "http://lume.msumari.com" }));
 app.use(compression());
 
 app.use(express.json());
