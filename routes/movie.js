@@ -95,12 +95,28 @@ router.get("/", verify, async (req, res) => {
   }
 });
 
+// SEARCH
 router.get("/search", async (req, res) => {
+  const term = req.query.term;
+
   try {
-    const movies = await Movie.find({}, { title: 1 });
-    res.status(200).json(movies);
+    let cursor = await Movie.aggregate([
+  {
+    '$search': {
+      'index': 'movie',
+      'text': {
+        'query': `${term}`,
+        'path': {
+          'wildcard': '*'
+        }
+      }
+    }
+  }
+]);
+    res.status(200).json(cursor);
+    
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json("search failed");
   }
 });
 

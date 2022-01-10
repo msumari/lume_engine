@@ -32,7 +32,7 @@ async function getData(page, limit) {
         url: "http://lume-engine.herokuapp.com/api/movie",
         headers: {
           token:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODAwNGJiZTZlNGU1NmZhN2UwNzE4NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzNjM3NTE3NywiZXhwIjoxNjM2ODA3MTc3fQ.KmsoTOJOuyrY1L6cRO_kqT6cWsXZuvWT4pNJusc8TFc",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxODAwNGJiZTZlNGU1NmZhN2UwNzE4NCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYzODUzMzI4NiwiZXhwIjoxNjM4OTY1Mjg2fQ.r4y9VJfEe3mNacI7IABMoKikHlCDhgBOSiHGhW0xVeU",
           "Content-Type": "application/json",
         },
         data: movie,
