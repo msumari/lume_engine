@@ -111,7 +111,10 @@ router.get("/search", async (req, res) => {
         }
       }
     }
-  }
+  },
+  {
+    '$limit': 10,
+  },
 ]);
     res.status(200).json(cursor);
     
