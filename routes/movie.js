@@ -98,6 +98,10 @@ router.get("/", verify, async (req, res) => {
 // SEARCH
 router.get("/search", async (req, res) => {
   const term = req.query.term;
+  const limit = 10
+  const page = parseInt(req.query.page)
+  const skip = parseInt((page - 1) * limit) 
+
 
   try {
     let cursor = await Movie.aggregate([
@@ -112,10 +116,8 @@ router.get("/search", async (req, res) => {
       }
     }
   },
-  {
-    '$limit': 10,
-  },
-]);
+]).skip(skip).limit(limit)
+
     res.status(200).json(cursor);
     
   } catch (err) {
