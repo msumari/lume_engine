@@ -15,6 +15,7 @@ const moviesListRoute = require("./routes/list");
 const migrateRoute = require("./routes/migrate");
 dotenv.config();
 
+/* Connect to the MongoDB database using the Mongoose library. */
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -23,6 +24,10 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((err) => console.log(err));
 
+/* The app.use() method is used to register middleware functions. 
+The first argument is the path of the middleware. 
+The second argument is the middleware function. 
+The middleware function is executed when the path is matched. */
 app.use(cors({ origin: "*" }));
 app.use(compression());
 
@@ -40,6 +45,8 @@ app.use("/api/migrate", migrateRoute);
 
 app.use("/api/auth", authRoute);
 
+/* This is the code that is running our backend. It is listening on port 8800 and when a request is
+made to that port, it will run the code in the callback function. */
 app.listen(process.env.PORT || 8800, () => {
   console.log("backend is up");
 });
