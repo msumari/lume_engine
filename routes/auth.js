@@ -4,6 +4,9 @@ const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
 //REGISTER
+/* We create a new user with the username, email, and password. We encrypt the password using the
+secret key. Then we save the user to the database. */
+
 router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
@@ -23,6 +26,11 @@ router.post("/register", async (req, res) => {
 });
 
 //LOGIN
+/* 1. We first check if the user exists in the database. If not, we return a 401 error.
+2. We then check if the password is correct. If not, we return a 401 error.
+3. If the user is found and the password is correct, we create an access token and return it to the
+user. */
+
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
