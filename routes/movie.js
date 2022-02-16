@@ -79,6 +79,7 @@ router.get("/find/:id", async (req, res) => {
 /* Get a random movie from the database. */
 router.get("/random", async (req, res) => {
   const type = req.query.type;
+  const genre = req.query.genre;
   let movie;
 
   /* This code is a JavaScript function that will find a random movie from the database that is a
@@ -90,10 +91,16 @@ router.get("/random", async (req, res) => {
         { $sample: { size: 1 } },
       ]);
     } /* Get a random movie from the database that is not a series. */ else {
-      movie = await Movie.aggregate([
-        { $match: { isSeries: false } },
-        { $sample: { size: 1 } },
-      ]);
+      movie = genre
+        ? /* This is a JavaScript function that will find a random movie from the database that as a desired genre. */
+          await Movie.aggregate([
+            { $match: { genre: genre } },
+            { $sample: { size: 1 } },
+          ])
+        : await Movie.aggregate([
+            { $match: { isSeries: false } },
+            { $sample: { size: 1 } },
+          ]);
     }
     res.status(200).json(movie);
   } catch (err) {
